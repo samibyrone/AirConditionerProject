@@ -19,4 +19,22 @@ class TestAirConditioner(unittest.TestCase):
         air_conditioner = AirConditioner()
         air_conditioner.turnOn()
         air_conditioner.increaseTemperature()
-        self.assertEqual(air_conditioner.increaseTemperature(), air_conditioner.temperature)
+        self.assertEqual(air_conditioner.getTemperature(), 17)
+
+    def test_new_air_conditioner_can_be_turn_on_and_decrease_temperature(self):
+        air_conditioner = AirConditioner()
+        air_conditioner.turnOn()
+        air_conditioner.decreaseTemperature()
+        self.assertEqual(air_conditioner.getTemperature(), 15)
+
+    def test_new_air_conditioner_can_be_turn_on_and_temperature_increase_up_to_30C(self):
+        air_conditioner = AirConditioner()
+        air_conditioner.turnOn()
+        air_conditioner.setTemperature(30)
+        self.assertEqual(air_conditioner.getTemperature(), 30, "Temperature should be set correctly")
+
+    def test_new_air_conditioner_can_be_turn_on_and_temperature_decrease_not_below_16C(self):
+        air_conditioner = AirConditioner()
+        air_conditioner.turnOn()
+        air_conditioner.setTemperature(16)
+        self.assertEqual(air_conditioner.getTemperature(), 16, "Temperature should be set correctly")
